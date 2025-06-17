@@ -26,13 +26,16 @@ app.use(express.json());
 
 // Enable CORS
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  origin: [process.env.CORS_ORIGIN || 'http://localhost:3000', 'http://localhost:4200'],
   credentials: true
 }));
 
 // Mount routes
 app.use('/api/auth', require('./src/routes/auth'));
 app.use('/api/movies', require('./src/routes/movies'));
+app.use('/api/seats', require('./src/routes/seat'));
+app.use('/api/bookings', require('./src/routes/bookings'));
+app.use('/api/theaters', require('./src/routes/theaters'));
 
 app.get('/api/health', (req, res) => {
   res.json({ 
